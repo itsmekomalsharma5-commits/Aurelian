@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #1c0d27;
+    color: #f2daff;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.diamond-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #e9c349;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.glass-card {
+  background: rgba(63, 46, 75, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(233, 195, 73, 0.1);
+}
+
+.gold-border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(#1c0d27, #1c0d27) padding-box,
+              linear-gradient(to bottom right, #e9c349, #af8d11) border-box;
+}
+
+.hero-vignette {
+  background: linear-gradient(to top, #1c0d27 5%, transparent 40%),
+              linear-gradient(to bottom, #1c0d27 0%, transparent 20%);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

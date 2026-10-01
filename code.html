@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURELIAN | Timeless Elegance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#988d98",
+                      "on-surface-variant": "#cfc3ce",
+                      "secondary-fixed": "#ffe088",
+                      "inverse-primary": "#774f88",
+                      "surface-container-lowest": "#160722",
+                      "secondary-container": "#af8d11",
+                      "primary-fixed-dim": "#e6b5f6",
+                      "on-background": "#f2daff",
+                      "error-container": "#93000a",
+                      "error": "#ffb4ab",
+                      "surface-dim": "#1c0d27",
+                      "primary-container": "#2e073f",
+                      "surface-container-low": "#241530",
+                      "on-secondary-fixed": "#241a00",
+                      "tertiary": "#e7b4ff",
+                      "tertiary-fixed": "#f5d9ff",
+                      "surface": "#1c0d27",
+                      "tertiary-container": "#2f0048",
+                      "surface-bright": "#43334f",
+                      "secondary-fixed-dim": "#e9c349",
+                      "surface-container": "#281934",
+                      "on-secondary-container": "#342800",
+                      "on-tertiary-container": "#b35be5",
+                      "on-tertiary": "#4f0076",
+                      "on-primary-fixed": "#2f0840",
+                      "tertiary-fixed-dim": "#e7b4ff",
+                      "primary": "#e6b5f6",
+                      "background": "#1c0d27",
+                      "inverse-on-surface": "#3a2a46",
+                      "secondary": "#e9c349",
+                      "surface-container-highest": "#3f2e4b",
+                      "on-primary-container": "#9f73af",
+                      "on-secondary-fixed-variant": "#574500",
+                      "primary-fixed": "#f8d8ff",
+                      "outline-variant": "#4c444d",
+                      "on-surface": "#f2daff",
+                      "on-error-container": "#ffdad6",
+                      "surface-variant": "#3f2e4b",
+                      "on-primary-fixed-variant": "#5e376e",
+                      "surface-container-high": "#33233f",
+                      "on-tertiary-fixed": "#30004a",
+                      "surface-tint": "#e6b5f6",
+                      "on-tertiary-fixed-variant": "#7008a2",
+                      "inverse-surface": "#f2daff",
+                      "on-primary": "#462056",
+                      "on-secondary": "#3c2f00",
+                      "on-error": "#690005"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "section-gap": "120px",
+                      "gutter": "24px",
+                      "margin-desktop": "80px",
+                      "container-max": "1440px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "body-md": ["Montserrat"],
+                      "headline-sm": ["Playfair Display"],
+                      "display-lg-mobile": ["Playfair Display"],
+                      "body-lg": ["Montserrat"],
+                      "label-caps": ["Montserrat"],
+                      "headline-md": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .diamond-bullet {
+            width: 8px;
+            height: 8px;
+            background-color: #e9c349;
+            transform: rotate(45deg);
+        }
+        .glass-card {
+            background: rgba(63, 46, 75, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 195, 73, 0.1);
+        }
+        .gold-border-gradient {
+            border: 1px solid transparent;
+            background: linear-gradient(#1c0d27, #1c0d27) padding-box,
+                        linear-gradient(to bottom right, #e9c349, #af8d11) border-box;
+        }
+        .hero-vignette {
+            background: linear-gradient(to top, #1c0d27 5%, transparent 40%),
+                        linear-gradient(to bottom, #1c0d27 0%, transparent 20%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary/30">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_8px_30px_rgb(46,7,63,0.4)] transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] flex justify-between items-center px-margin-mobile h-20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary cursor-pointer">menu</span>
+<img alt="AURELIAN Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUIFZFPKBHC4M6uVn5sSlzD0nyTZOQ93v7XENa0Cb9K--OCK5rYzPOYNSa5t0MVYp1KlI0KWJnbVrQFKhneKLRHd3XzPAOzVbctqaLioG1B-XF40NOwVjER3EtzbMPDsXiAaEwJAt_QTTE9XDcmcBZcsTfT7ihsoIeKe9xIZIkqoaq_EeSDaUkwtwfE8PyZVfouxoRbr9KTPFhDEvDftVdTV0NNalf0y3w1AvkX9BR8dqJq42CwhqT"/>
+</div>
+<h1 class="font-display-lg-mobile text-[24px] tracking-tighter text-secondary">AURELIAN</h1>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">shopping_bag</span>
+</div>
+</header>
+<main class="pt-20 pb-24">
+<!-- Hero Section -->
+<section class="relative h-[85vh] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cinematic, high-fashion close-up of a model wearing a majestic amethyst and diamond necklace. The lighting is dramatic and moody with deep purple shadows and golden highlights reflecting off the gemstones. The aesthetic is ultra-luxurious, capturing a sense of timeless elegance and royal sophistication. Deep velvet textures are visible in the background, reinforcing the premium heritage brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLI6IJwn0DaK_0L8HsmvA8t51ojQ63RVD3Pg2ftXd7WrwTAh4GSEXBAwf9vJIeLYTYIgeDyQzSZKslSE762iTyH2ILeuCwcoY0ikMcFjc0OJjryFkPvh4MrSvxaoJLN1_Zta5EnRNaAA2du6UCNssVMj_8csWq1ca39QXKKQpCxQ2plSEBITtnVR_O96ddJoJPjge4QBR815E2yAXoHKDSnGgpWfZOEnHFMNzkG9SE_BvBDOO8D563')"></div>
+<div class="absolute inset-0 hero-vignette"></div>
+<div class="absolute bottom-12 left-0 w-full px-margin-mobile text-center">
+<p class="font-label-caps text-label-caps text-secondary mb-4">THE HERITAGE COLLECTION</p>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-white mb-8">Timeless Elegance, <br/>Made to Shine</h2>
+<button class="bg-secondary text-on-secondary px-10 py-4 font-label-caps text-label-caps tracking-widest hover:shadow-[0_0_20px_rgba(233,195,73,0.4)] transition-all duration-500">
+                    SHOP NOW
+                </button>
+</div>
+</section>
+<!-- Categories Bento-style -->
+<section class="mt-section-gap px-margin-mobile">
+<h3 class="font-headline-md text-headline-md text-center mb-10">Curated Categories</h3>
+<div class="grid grid-cols-2 gap-4">
+<!-- Large card -->
+<div class="col-span-2 relative h-48 overflow-hidden rounded-sm group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="An exquisite display of various luxury diamond rings set against a plush plum-colored velvet background. The lighting is soft and ethereal, highlighting the intricate gold craftsmanship and the brilliance of the stones. The composition is elegant and balanced, evoking a sense of high-end boutique retail." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUpT2adNkTYXtT_WR9NrJtaPuhhUg4ZieHZMWtYL0-_LHEVnbceowFePPAkekVpTI0i7UIQFLV6CDkrWqGe9u0-EA5mrJG-oEn8xM4PyaKg58QBLq5SyMHq56zAlAAm_yVBOqCFueSUougEY1RJPkC7i-FU4fT4HGXxBRCCcouT-D1vBpDPxtEpS_ZQ-InS-n2vZ4csQMTSLCbsVfz_M1DGfwsVsguhwm-_31yvoVgwUwyZYW0hU2S')"></div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm text-white">Rings</span>
+</div>
+</div>
+<!-- Small cards -->
+<div class="relative h-40 overflow-hidden rounded-sm group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A graceful arrangement of delicate gold necklaces with lavender gemstone pendants. The background is a clean, dark purple marble surface with subtle gold veining. The aesthetic is modern, minimalist luxury with a focus on fine detail and craftsmanship." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBw4ljVWaQN_lNlxsG0cJtYNiOeuOGwe67b-8uqbSEZJlJiDLzIuBz7vlYY6jBcBIBcFxSQUe6U3Rl8E6y-5i0QXccC3Sm0Aio9taXDZaP4vL1AABqAG3wc39uFEa2OyGfAJPbVZxewZPZU53G4RSDCR9ZVltDae_YCfW3c-Hmze_5IzC4GSnjAlqSPHcBArC_OK7ADfP-5sWil4MAuGc8-LxniWmbJ1mPs_kTIcHaEmZ7csMJMNFur')"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm text-white">Necklaces</span>
+</div>
+</div>
+<div class="relative h-40 overflow-hidden rounded-sm group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="High-end diamond and gold earrings displayed on a professional jewellery stand. The environment is a luxurious dark-themed showroom with atmospheric purple backlighting and sharp, focused spotlights on the jewellery pieces." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlGnfN-GI_poZzLiz4BT6M6Km2nuqd2ot9LDPpFMXLdA7Kd4yyIJHPeHGCAqSjSHuqtm5eaXiilOEvvLnPc17yN2d0zfKgU8PvFfVA_-0vPhQQfD2DSsN4mg0aFaVjI2e6BNAI6VIHrlJZxX7OO2588J4QDG4MKNJVnPLpxZH4QwHC-AHtg9Jw6sPMhUcU63y7HmFHO0ut5yFPLd6i79Fd86jvWSyFQnupUVwKQJHhpmx2UPtetTVP')"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm text-white">Earrings</span>
+</div>
+</div>
+</div>
+</section>
+<!-- New Arrivals -->
+<section class="mt-section-gap px-margin-mobile">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md">New Arrivals</h3>
+<p class="text-on-surface-variant font-body-md">Exclusively crafted for this season</p>
+</div>
+<a class="text-secondary font-label-caps text-label-caps border-b border-secondary/30 pb-1" href="#">VIEW ALL</a>
+</div>
+<div class="flex overflow-x-auto gap-6 pb-8 no-scrollbar">
+<!-- Product Card 1 -->
+<div class="min-w-[280px] group">
+<div class="relative aspect-[4/5] mb-4 overflow-hidden bg-surface-container-high rounded-sm">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A luxury gold bracelet with pave-set amethysts, photographed from a high angle on a dark reflective surface. The lighting creates elegant glints on the gold edges and deep purple reflections. The overall mood is sophisticated and exclusive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXwTIdyOQUnvoR4dB86w_yZmnJnPOsXzVy2joNf_glxxI29C0oy6z-HaNHL7h3audY9HFQbBjqCH6Y4P8bYI7FX7jBZk9AIjiYpe_QX1eb2tM4wX1uF5WOvtT198LRKCPIquyzpQux1wdYZwOrVfsceNH1XB6_8lprnNmadGEi4HYYsIvB_On19cg5HygJtV7UkvSvlu1wSeBhNcvEyrgPzl5x1emPKx6fkYr1zT1Onpbjg9OmxcJW"/>
+<div class="absolute top-4 left-4 bg-secondary/90 text-on-secondary px-3 py-1 text-[10px] font-label-caps tracking-widest">NEW IN</div>
+<button class="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md text-white p-3 rounded-full hover:bg-secondary hover:text-on-secondary transition-colors duration-300">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</button>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-1">Amethyst Empress Bracelet</h4>
+<div class="flex justify-between items-center">
+<span class="text-secondary font-body-lg">$2,450</span>
+<div class="flex items-center text-secondary-fixed text-[12px]">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1">4.9</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[280px] group">
+<div class="relative aspect-[4/5] mb-4 overflow-hidden bg-surface-container-high rounded-sm">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A pair of chandelier earrings featuring pear-cut diamonds and deep violet sapphires. The background is a soft-focus dark plum texture. The lighting is high-contrast, emphasizing the brilliance of the diamonds and the saturation of the sapphires." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBabrhJydKXi0aqQX5jMEUhvzsfCFzWsyV3b5uepTtmpxWcYcKxD22-Ug4V1pj1r-1CWKlIzsaU_9BBHhYU-HVd8xdeqmftNGU6Q2q886BXhY3Bozl0hymU6vTeGCE8V9kSpSfxMa_C0upt4SqHRkxSze9K47IwazlunazfP12oquvy6uft1XLA2-eC6mTBdVoxHP5V6J2pIZ8B5gV0IvhF_ho7T9d9OekH5Ez9GzcrjTB5SjEBCwrz"/>
+<button class="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md text-white p-3 rounded-full hover:bg-secondary hover:text-on-secondary transition-colors duration-300">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</button>
+</div>
+<h4 class="font-headline-sm text-[18px] mb-1">Violet Sapphire Chandelier</h4>
+<div class="flex justify-between items-center">
+<span class="text-secondary font-body-lg">$3,100</span>
+<div class="flex items-center text-secondary-fixed text-[12px]">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1">5.0</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Collection (Gradient) -->
+<section class="mt-section-gap py-20 px-margin-mobile relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container via-[#4c1d63] to-surface-container-lowest"></div>
+<div class="relative z-10 text-center">
+<h3 class="font-display-lg-mobile text-[32px] text-white mb-6">The Royal Amethyst</h3>
+<p class="font-body-md text-on-surface-variant max-w-xs mx-auto mb-10 leading-relaxed">
+                    A tribute to heritage and nobility, featuring the world's most sought-after deep purple gemstones set in 18k recycled gold.
+                </p>
+<div class="flex justify-center mb-10">
+<div class="w-24 h-[1px] bg-secondary/50"></div>
+<div class="diamond-bullet mx-4 -mt-[3px]"></div>
+<div class="w-24 h-[1px] bg-secondary/50"></div>
+</div>
+<button class="border border-secondary text-secondary px-8 py-3 font-label-caps text-label-caps tracking-widest hover:bg-secondary hover:text-on-secondary transition-all duration-500">
+                    DISCOVER MORE
+                </button>
+</div>
+<!-- Decorative elements -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-secondary/5 rounded-full blur-[100px]"></div>
+<div class="absolute -left-20 -bottom-20 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+</section>
+<!-- Best Sellers Grid -->
+<section class="mt-section-gap px-margin-mobile">
+<h3 class="font-headline-md text-headline-md text-center mb-12">The Best of Aurelian</h3>
+<div class="grid grid-cols-2 gap-x-4 gap-y-10">
+<!-- Item 1 -->
+<div class="space-y-3">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover" data-alt="A minimalist 18k yellow gold band ring with a single baguette-cut amethyst. The shot is a clean top-down view on a dark velvet display. Subtle gold highlights outline the ring's silhouette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7jFyOOGDqNekvX_IrZtN7zPg8Y3twMsuyc4WPq7Fs7qDmyw2EV9pWhhppOp1ilKHubNEeylGG6uBlCRoX1SGDi7KChT-_ij5_5iNLzo6IWUpCY9kv-8PZEyvBaLpj-dlj-DVzDlJ9x60XbkYKnkti_zeUuzfQQcqwjKETrPnLJSqzzQvpNX9wohuYb3eKDUoYnTKRU0_sUltlsE6FB11lmGH1okSnWlcD7qA2JB6c802oOpGodZwa"/>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">RINGS</p>
+<h5 class="font-body-md font-semibold text-[14px]">Baguette Amethyst Band</h5>
+<p class="text-secondary text-[14px]">$1,200</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="space-y-3">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover" data-alt="Elegant diamond stud earrings with lavender sapphire halos. The image is bright yet moody, with a focus on the refraction of light through the gemstones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtE6RGyqbaG1Z52sA3CRitm71XSa0EBotL03DIT6BqE8V2kA63cwJ9955dB0dDrOvBAUJQo8Tp3C2DYpxpR1dfAPVExBQ7YZwZdu0idcSNggExHZLLHUDTq-lYiX4mojy6CiM-m8o3UIr9E3HwdDnbEHymkFgamaDwtaJ5cslJjqnJUXdb5w8VvEnFXQYVVrUaK9NNVLPJSg1xn9uOABQ3w4U8v-WcSN91ztF4nMao7HJoxXovY4so"/>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">EARRINGS</p>
+<h5 class="font-body-md font-semibold text-[14px]">Lavender Halo Studs</h5>
+<p class="text-secondary text-[14px]">$1,850</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="space-y-3">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover" data-alt="A high-end luxury watch with a plum-colored leather strap and a gold case adorned with tiny diamonds. The aesthetic is sophisticated and precise, emphasizing professional watchmaking excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIR773N8XytYKYPT66mPpM5bxypmvHxwIWjTZilN0YyIWMP-n_k_przKlmBKNq5EofWCWDlZgX5jEHvVDr0kEDRvOoWbmo_yWXHsbqphoX77fJ5OTdoKvidUhpaGAUSKw-8zf-vy3JDtSR4hxeAmwBHSKZ5fUN5iveUgcDG6PriM7PWiNiaxcLk1gIFR1skLEyeySj5OZ5tckLwG3IYD-fZhIyKyzxiUg93d8Y0m3HtKrNo_6zRERC"/>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">TIMEPIECES</p>
+<h5 class="font-body-md font-semibold text-[14px]">Heritage Plum Watch</h5>
+<p class="text-secondary text-[14px]">$5,400</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="space-y-3">
+<div class="aspect-square bg-surface-container-low overflow-hidden rounded-sm">
+<img class="w-full h-full object-cover" data-alt="A delicate rose gold anklet featuring small diamond charms. The lighting is warm and inviting, set against a soft lavender fabric background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTvxyAzCNbYX6yG7NHJFjKqPh8DWpmgisufm3P6sAYSTh2f3IZPJyWoF6QbTS8F1X-YGRuOThEG0G56DY6y7oG3EpIZST71D6Jj3MIDVuMmhicSvPvb9zSQo53t9qIkp3xtphAJNuIETEDeLcK5npHZRBVphtDHO5FcJ8pn5M90zd7UQ4EFlTQO73Ctspa8cN86WLLkx6RFGulmAH72zLMaFlfA1Ukjmp-511gzEdycyBimCdMl63A"/>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">ACCESSORIES</p>
+<h5 class="font-body-md font-semibold text-[14px]">Stellar Rose Gold Anklet</h5>
+<p class="text-secondary text-[14px]">$950</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Promotional Gold Banner -->
+<section class="mt-section-gap px-margin-mobile">
+<div class="gold-border-gradient p-8 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2">
+<div class="diamond-bullet opacity-30"></div>
+</div>
+<p class="font-label-caps text-label-caps text-secondary mb-2">SEASONAL OFFER</p>
+<h4 class="font-headline-sm text-white mb-4">Gifts of Brilliance</h4>
+<p class="font-body-md text-on-surface-variant mb-6">Enjoy 15% off on your first collection purchase when you join our elite circle.</p>
+<button class="text-secondary font-label-caps text-label-caps border-b border-secondary pb-1">REDEEM OFFER</button>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="mt-section-gap px-margin-mobile">
+<div class="glass-card p-10 text-center relative">
+<span class="material-symbols-outlined text-secondary text-[48px] opacity-30 mb-4">format_quote</span>
+<p class="font-headline-sm italic text-white mb-6">"The most exquisite piece I've ever owned. The way it catches the light is truly magical. AURELIAN is pure luxury."</p>
+<p class="font-label-caps text-secondary">ELIZABETH V.</p>
+<p class="text-[10px] text-on-surface-variant">VIP CLIENT</p>
+</div>
+</section>
+<!-- Instagram Gallery -->
+<section class="mt-section-gap">
+<div class="px-margin-mobile mb-8 text-center">
+<h3 class="font-headline-md text-headline-md">Follow The Maison</h3>
+<p class="text-on-surface-variant font-body-md">@aurelianheritage</p>
+</div>
+<div class="grid grid-cols-3 gap-1">
+<img class="aspect-square object-cover" data-alt="A stylish lifestyle shot of a woman in an elegant black evening gown, wearing an Aurelian diamond necklace in a high-end lounge setting with warm, atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeDoginWXWfAuZcwi1pGBqYrlrm3ir4YEjMRZ11kzhVy4j1uMjTc0Z9xSdBkXOIVhALgavQ3gLM2sjV3UTqmPcuXwNY-JsQcyK6vKePgL3pyFvQ51de0A082SqF1r11K2XZsD6z557PM33i7GDcitWOUW4QUY4BxTD_2TRatn6kKdya1aP8DklDbKg3sjXAvJ0a6UhHBdAeNANqZ_tUluKEHgl51M1xqH9t8ADbtZ3OXfemFF5UGTD"/>
+<img class="aspect-square object-cover" data-alt="A macro shot of a master jeweller's hands carefully setting a large amethyst into a gold mount, surrounded by professional tools and sparkling gemstone dust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC23fbRiU4FaBQkUuFnTZ1S01daI9LVdM2uoDaT52yGCUR9HCKE3t4adopOMrQMVqKw3jEC75ab3LX-Gq4d-LyXA50OK8OEtPM2MYxLBWD-VyeR7IAF9zzWDc5gkbleZBI-9WOS_QOxNnGm0uECe5HMnP0F-W2DK4T8I9fLJuWV9Pv5rzpCXryq1zPEz9CsJQlpuqdIkxCmfLGwZSLqAslvFFCAsVYUjRjio7jcXzfDpYv9XfGWDiyN"/>
+<img class="aspect-square object-cover" data-alt="A beautifully set boutique display window at night, showing the Aurelian logo in gold against a deep purple velvet backdrop with glowing jewellery pedestals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPg9PbjoNB8de0v5ShHVCeyBMkT3BrjuwSx5medql4SFOyqoSishL0W2N5iWx4pVWNT_K0fPbuSJmsNvgZoSWyvPGjNvlVz9JWiGRGIUM4mg-PbGukWZ0JgVHRCo1uWBjyBaCZ0p-a1lmNeoeqr72UkXAS2tO94K1KRCdprziIahme7SVcX8JQLQPCPBh5rhmZr-13_L-BGv2vGZtWB6__HfpjT6flV2zAaNUvobIRHAYafM2FHXZb"/>
+<img class="aspect-square object-cover" data-alt="A flat-lay composition of a luxury jewellery box, a glass of champagne, and a delicate gold bracelet on a marble surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY4iMUZUdRB1hnhBYrA6NR47moHzeB2jbmsbQvMKR15l2KtSNDip-mT6KhLjgxJYzz6coFlSQ2wonTqhZB2nOLBkbJK3ALB8ekhmHu6zoJoNr8lwsesqyvhjgOx2n4wUl8EymgEb6KObquWkJfKI3UeSZrvmEL8y1xb1NmZZ1MsTA9jCe19TnpgKRC17feRDtPyjQ21XwJGyMGdPtk8xw0h5yKSfw0LsxwfnyZNqjnHsqLhg26dZkp"/>
+<img class="aspect-square object-cover" data-alt="Close-up of a model's ear wearing three different gold and diamond studs, demonstrating an elegant curated ear look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIY0EmxfziuDO12izoygIysIulJjy7T2AbDMK90nh74BM7XQZg8j_DPbx0ncW29DfGzCVshSkjAA0O9Vqij3IDr1AlFY25zUCFB9hfQ-nAg7u8Ir08UpRqG_qDI6MNsnzJIXH0f7LZmuPyouSjSnwPQD3C6YlfSFIRM5OaVStBvrlPgDR9hLuAAfbBXhpuTORPdXk0v3e2JKty5VYl3U_zv0mQOgziQ4azUuRsLkuaAaQ_e7d1oiBa"/>
+<img class="aspect-square object-cover" data-alt="A majestic sun-drenched shot of a Parisian balcony overlooking the city, with an Aurelian gift bag placed prominently in the foreground." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSB_7jmkHzGAXLmpEbiQraNAP-dQszrNWxwiqRTxrzOFwTmfug8wAL2IwIRV7kClelrXZfosHJxYb0OF-kVieLD-rLtDiM90jnOs7P4_ry1G-eWOhT8DdCVQiQ_6LRElkDGqglyP5AeE9E-X0M2NldySAbHE86aUppiUsFwxKfCBmmS61caRuI3EI1t3ZcSVE7Tzr72z0SyMeqCranV8MfVTjQlyu6FlQnNLbHzTD7778K3NG_dgsi"/>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="mt-section-gap px-margin-mobile">
+<div class="bg-surface-container py-16 px-8 rounded-sm text-center">
+<h3 class="font-headline-md text-headline-md mb-4">Join the Inner Circle</h3>
+<p class="text-on-surface-variant font-body-md mb-8">Be the first to discover limited collections and private trunk shows.</p>
+<div class="space-y-4">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant text-center focus:ring-0 focus:border-secondary transition-colors font-body-md py-3 placeholder:text-on-surface-variant/40" placeholder="Email Address" type="email"/>
+<button class="w-full bg-secondary text-on-secondary py-4 font-label-caps text-label-caps tracking-widest mt-4">SUBSCRIBE</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full mt-section-gap border-t border-outline-variant/30 bg-surface-container-lowest flex flex-col items-center gap-gutter py-20 px-margin-mobile text-center">
+<img alt="AURELIAN Logo" class="h-16 w-auto mb-4 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUIFZFPKBHC4M6uVn5sSlzD0nyTZOQ93v7XENa0Cb9K--OCK5rYzPOYNSa5t0MVYp1KlI0KWJnbVrQFKhneKLRHd3XzPAOzVbctqaLioG1B-XF40NOwVjER3EtzbMPDsXiAaEwJAt_QTTE9XDcmcBZcsTfT7ihsoIeKe9xIZIkqoaq_EeSDaUkwtwfE8PyZVfouxoRbr9KTPFhDEvDftVdTV0NNalf0y3w1AvkX9BR8dqJq42CwhqT"/>
+<h4 class="font-display-lg text-[28px] text-secondary tracking-tighter">AURELIAN</h4>
+<nav class="flex flex-wrap justify-center gap-x-8 gap-y-4 mt-4">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 text-body-md" href="#">The Maison</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 text-body-md" href="#">Craftsmanship</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 text-body-md" href="#">Care &amp; Servicing</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300 text-body-md" href="#">Contact Us</a>
+</nav>
+<div class="flex gap-6 mt-6">
+<span class="material-symbols-outlined text-secondary/60">share</span>
+<span class="material-symbols-outlined text-secondary/60">public</span>
+<span class="material-symbols-outlined text-secondary/60">mail</span>
+</div>
+<p class="font-body-md text-[12px] text-on-surface-variant/50 mt-10 tracking-widest uppercase">
+                © 2024 AURELIAN HERITAGE. ALL RIGHTS RESERVED.
+            </p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-full bg-surface-container-highest/90 dark:bg-surface-container-highest/90 backdrop-blur-2xl border-t border-secondary/10 shadow-[0_-10px_40px_rgba(46,7,63,0.6)] flex justify-around items-center pt-3 pb-4 px-6">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed scale-110 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">diamond</span>
+<span class="font-label-caps text-[10px] mt-1">Atelier</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:text-secondary/80">
+<span class="material-symbols-outlined">auto_awesome_motion</span>
+<span class="font-label-caps text-[10px] mt-1">Collections</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:text-secondary/80">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-caps text-[10px] mt-1">Wishlist</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:text-secondary/80">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</div>
+</nav>
+<script>
+        // Smooth scroll interaction for categories
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

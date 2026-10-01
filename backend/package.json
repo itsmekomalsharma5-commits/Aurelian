@@ -1,0 +1,20 @@
+{
+  "name": "aurelian-backend",
+  "version": "1.0.0",
+  "description": "RESTful API backend for Aurelian Luxury High Jewelry",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": ["jewelry", "ecommerce", "luxury", "api", "express"],
+  "author": "Aurelian Maison",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
+  }
+}

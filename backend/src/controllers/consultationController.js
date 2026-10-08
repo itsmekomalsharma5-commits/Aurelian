@@ -11,7 +11,8 @@ export const getBoutiques = (req, res) => {
 
 export const getConsultations = (req, res) => {
   try {
-    const consultations = db.getConsultations();
+    const { email } = req.query;
+    const consultations = db.getConsultations(email);
     res.json({ success: true, count: consultations.length, data: consultations });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });

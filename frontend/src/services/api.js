@@ -4,7 +4,10 @@ import {
   BEST_SELLERS as LOCAL_BEST_SELLERS,
 } from '../data/products';
 
-const API_BASE = '/api';
+const envApi = import.meta.env.VITE_API_URL;
+const API_BASE = envApi
+  ? (envApi.endsWith('/api') ? envApi : `${envApi.replace(/\/$/, '')}/api`)
+  : '/api';
 const TOKEN_KEY = 'aurelian_vip_token';
 
 function getToken() {
@@ -46,7 +49,15 @@ async function request(endpoint, options = {}) {
       headers,
     });
 
-    const data = await res.json();
+    let data;
+    const contentType = res.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      data = await res.json();
+    } else {
+      const text = await res.text();
+      data = { message: text || `HTTP error ${res.status}` };
+    }
+
     if (!res.ok) {
       throw new Error(data.message || `Request failed with status ${res.status}`);
     }

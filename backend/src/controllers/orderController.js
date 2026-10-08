@@ -108,9 +108,11 @@ export const getOrderById = (req, res) => {
 
 export const getOrders = (req, res) => {
   try {
-    const orders = db.getOrders();
+    const { email } = req.query;
+    const orders = db.getOrders(email);
     res.json({ success: true, count: orders.length, data: orders });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+

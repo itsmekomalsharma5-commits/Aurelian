@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 
-export default function ConsultationModal({ isOpen, onClose, showToast }) {
+export default function ConsultationModal({ isOpen, onClose, showToast, currentUser }) {
   const [boutiques, setBoutiques] = useState([
     {
       id: 'paris-place-vendome',
@@ -26,9 +26,9 @@ export default function ConsultationModal({ isOpen, onClose, showToast }) {
   ]);
 
   const [formData, setFormData] = useState({
-    clientName: '',
-    email: '',
-    phone: '',
+    clientName: currentUser ? `${currentUser.firstName} ${currentUser.lastName || ''}`.trim() : '',
+    email: currentUser?.email || '',
+    phone: currentUser?.phone || '',
     boutiqueId: 'paris-place-vendome',
     date: '',
     timeSlot: '14:00 - 15:30',
@@ -37,6 +37,17 @@ export default function ConsultationModal({ isOpen, onClose, showToast }) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [confirmation, setConfirmation] = useState(null);
+
+  useEffect(() => {
+    if (currentUser) {
+      setFormData((prev) => ({
+        ...prev,
+        clientName: prev.clientName || `${currentUser.firstName} ${currentUser.lastName || ''}`.trim(),
+        email: prev.email || currentUser.email || '',
+        phone: prev.phone || currentUser.phone || '',
+      }));
+    }
+  }, [currentUser, isOpen]);
 
   useEffect(() => {
     if (isOpen) {

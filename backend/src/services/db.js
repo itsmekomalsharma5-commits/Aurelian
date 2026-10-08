@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import { config } from '../config/index.js';
 import { INITIAL_DATA } from '../data/initialData.js';
 
-const JWT_SECRET = 'aurelian_imperial_high_jewelry_secret_2026';
+const JWT_SECRET = config.jwtSecret || 'aurelian_imperial_high_jewelry_secret_2026';
 
 function hashPassword(password, salt = crypto.randomBytes(16).toString('hex')) {
   const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
@@ -110,7 +110,11 @@ class DataStore {
       fs.writeFileSync(tempPath, JSON.stringify(this.data, null, 2), 'utf-8');
       fs.renameSync(tempPath, this.filePath);
     } catch (err) {
-      fs.writeFileSync(this.filePath, JSON.stringify(this.data, null, 2), 'utf-8');
+      try {
+        fs.writeFileSync(this.filePath, JSON.stringify(this.data, null, 2), 'utf-8');
+      } catch (writeErr) {
+        console.warn('DataStore write skipped (filesystem may be ephemeral or read-only):', writeErr.message);
+      }
     }
   }
 

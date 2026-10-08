@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 
 export default function CheckoutModal({
@@ -7,21 +7,38 @@ export default function CheckoutModal({
   items = [],
   appliedPromoCode = '',
   onOrderSuccess,
-  showToast
+  showToast,
+  currentUser,
 }) {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    country: 'United States',
-    postalCode: '',
+    firstName: currentUser?.firstName || '',
+    lastName: currentUser?.lastName || '',
+    email: currentUser?.email || '',
+    phone: currentUser?.phone || '',
+    address: currentUser?.address || '',
+    city: currentUser?.city || '',
+    country: currentUser?.country || 'United States',
+    postalCode: currentUser?.postalCode || '',
     paymentMethod: 'Aurelian VIP Concierge Wire',
     giftWrap: true,
     giftMessage: '',
   });
+
+  useEffect(() => {
+    if (currentUser) {
+      setFormData((prev) => ({
+        ...prev,
+        firstName: prev.firstName || currentUser.firstName || '',
+        lastName: prev.lastName || currentUser.lastName || '',
+        email: prev.email || currentUser.email || '',
+        phone: prev.phone || currentUser.phone || '',
+        address: prev.address || currentUser.address || '',
+        city: prev.city || currentUser.city || '',
+        country: prev.country || currentUser.country || 'United States',
+        postalCode: prev.postalCode || currentUser.postalCode || '',
+      }));
+    }
+  }, [currentUser, isOpen]);
 
   const [promoInput, setPromoInput] = useState(appliedPromoCode || '');
   const [promoDetails, setPromoDetails] = useState(null);

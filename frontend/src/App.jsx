@@ -16,6 +16,8 @@ import BottomNav from './components/BottomNav';
 import Toast from './components/Toast';
 import CheckoutModal from './components/CheckoutModal';
 import ConsultationModal from './components/ConsultationModal';
+import AuthModal from './components/AuthModal';
+import ProfileModal from './components/ProfileModal';
 import api from './services/api';
 import {
   CATEGORIES as FALLBACK_CATEGORIES,
@@ -23,27 +25,53 @@ import {
   BEST_SELLERS as FALLBACK_BEST_SELLERS,
 } from './data/products';
 
+const CART_STORAGE_KEY = 'aurelian_cart';
+const WISHLIST_STORAGE_KEY = 'aurelian_wishlist';
+
 export default function App() {
-  const [cart, setCart] = useState([
-    {
-      id: 'amethyst-empress-bracelet',
-      name: 'Amethyst Empress Bracelet',
-      price: 2450,
-      quantity: 1,
-      image:
-        'https://lh3.googleusercontent.com/aida-public/AB6AXuCXwTIdyOQUnvoR4dB86w_yZmnJnPOsXzVy2joNf_glxxI29C0oy6z-HaNHL7h3audY9HFQbBjqCH6Y4P8bYI7FX7jBZk9AIjiYpe_QX1eb2tM4wX1uF5WOvtT198LRKCPIquyzpQux1wdYZwOrVfsceNH1XB6_8lprnNmadGEi4HYYsIvB_On19cg5HygJtV7UkvSvlu1wSeBhNcvEyrgPzl5x1emPKx6fkYr1zT1Onpbjg9OmxcJW',
-    },
-  ]);
-  const [wishlist, setWishlist] = useState(['violet-sapphire-chandelier']);
+  // Cart state with localStorage persistence
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [
+      {
+        id: 'amethyst-empress-bracelet',
+        name: 'Amethyst Empress Bracelet',
+        price: 2450,
+        quantity: 1,
+        image:
+          'https://lh3.googleusercontent.com/aida-public/AB6AXuCXwTIdyOQUnvoR4dB86w_yZmnJnPOsXzVy2joNf_glxxI29C0oy6z-HaNHL7h3audY9HFQbBjqCH6Y4P8bYI7FX7jBZk9AIjiYpe_QX1eb2tM4wX1uF5WOvtT198LRKCPIquyzpQux1wdYZwOrVfsceNH1XB6_8lprnNmadGEi4HYYsIvB_On19cg5HygJtV7UkvSvlu1wSeBhNcvEyrgPzl5x1emPKx6fkYr1zT1Onpbjg9OmxcJW',
+      },
+    ];
+  });
+
+  // Wishlist state with localStorage persistence
+  const [wishlist, setWishlist] = useState(() => {
+    try {
+      const saved = localStorage.getItem(WISHLIST_STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return ['violet-sapphire-chandelier'];
+  });
+
+  // UI Modal & Drawer States
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  // VIP User State
+  const [currentUser, setCurrentUser] = useState(null);
+
   const [activeTab, setActiveTab] = useState('atelier');
   const [toastMessage, setToastMessage] = useState(null);
   const [appliedPromoCode, setAppliedPromoCode] = useState('');
 
-  // Backend data state
+  // Backend product & category data state
   const [newArrivals, setNewArrivals] = useState(FALLBACK_NEW_ARRIVALS);
   const [bestSellers, setBestSellers] = useState(FALLBACK_BEST_SELLERS);
   const [categories, setCategories] = useState(FALLBACK_CATEGORIES);
@@ -52,7 +80,38 @@ export default function App() {
     setToastMessage(msg);
   };
 
-  // Fetch initial data from backend API
+  // Sync cart to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch {}
+  }, [cart]);
+
+  // Sync wishlist to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+    } catch {}
+  }, [wishlist]);
+
+  // Restore VIP User session if token exists
+  useEffect(() => {
+    async function restoreSession() {
+      if (api.getToken()) {
+        try {
+          const user = await api.getCurrentUser();
+          if (user) {
+            setCurrentUser(user);
+          }
+        } catch (err) {
+          console.warn('Unable to restore session:', err);
+        }
+      }
+    }
+    restoreSession();
+  }, []);
+
+  // Fetch initial catalog data from backend API
   useEffect(() => {
     async function loadData() {
       try {
@@ -65,11 +124,24 @@ export default function App() {
         if (best && best.length > 0) setBestSellers(best);
         if (cats && cats.length > 0) setCategories(cats);
       } catch (err) {
-        console.warn('Backend connection falling back to local dataset:', err);
+        console.warn('Backend catalog connection falling back to local dataset:', err);
       }
     }
     loadData();
   }, []);
+
+  // Auth Handlers
+  const handleAuthSuccess = (user) => {
+    setCurrentUser(user);
+    setIsAuthOpen(false);
+  };
+
+  const handleLogout = async () => {
+    await api.logout();
+    setCurrentUser(null);
+    setIsProfileOpen(false);
+    showToast('You have been securely signed out of the Maison Aurelian portal.');
+  };
 
   // Cart operations
   const handleAddToCart = (product) => {
@@ -117,7 +189,7 @@ export default function App() {
 
   const handleOrderSuccess = (order) => {
     setCart([]);
-    showToast(`Order ${order.orderNumber} successfully registered!`);
+    showToast(`Acquisition ${order.orderNumber} successfully registered!`);
   };
 
   // Wishlist operations
@@ -164,7 +236,30 @@ export default function App() {
     }
   };
 
-  // Intersection Observer for silky fade-in transitions
+  const handleCategorySelect = async (categorySlug) => {
+    scrollToSection('best-sellers');
+    if (!categorySlug || categorySlug === 'all') {
+      try {
+        const best = await api.getProducts({ type: 'best-sellers' });
+        if (best && best.length > 0) setBestSellers(best);
+      } catch {
+        setBestSellers(FALLBACK_BEST_SELLERS);
+      }
+      return;
+    }
+
+    try {
+      const filtered = await api.getProducts({ category: categorySlug });
+      if (filtered && filtered.length > 0) {
+        setBestSellers(filtered);
+        showToast(`Viewing ${filtered.length} piece${filtered.length === 1 ? '' : 's'} in ${categorySlug.toUpperCase()}.`);
+      }
+    } catch {
+      // Keep existing list on network issue
+    }
+  };
+
+  // Intersection Observer for silky fade-in transitions on below-the-fold sections
   useEffect(() => {
     const observerOptions = {
       threshold: 0.08,
@@ -179,7 +274,7 @@ export default function App() {
       });
     }, observerOptions);
 
-    const sections = document.querySelectorAll('main > section');
+    const sections = document.querySelectorAll('main > section:not(:first-child)');
     sections.forEach((section) => {
       section.classList.add(
         'transition-all',
@@ -204,6 +299,9 @@ export default function App() {
       <Navbar
         onOpenMenu={() => setIsMenuOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenProfile={() => setIsProfileOpen(true)}
+        currentUser={currentUser}
         cartCount={totalCartCount}
       />
 
@@ -211,8 +309,11 @@ export default function App() {
       <MenuDrawer
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        onSelectCategory={() => scrollToSection('categories')}
+        onSelectCategory={handleCategorySelect}
         onBookConsultation={() => setIsConsultationOpen(true)}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenProfile={() => setIsProfileOpen(true)}
+        currentUser={currentUser}
       />
 
       {/* Cart Drawer */}
@@ -233,12 +334,31 @@ export default function App() {
         appliedPromoCode={appliedPromoCode}
         onOrderSuccess={handleOrderSuccess}
         showToast={showToast}
+        currentUser={currentUser}
       />
 
       {/* VIP Salon Consultation Modal */}
       <ConsultationModal
         isOpen={isConsultationOpen}
         onClose={() => setIsConsultationOpen(false)}
+        showToast={showToast}
+        currentUser={currentUser}
+      />
+
+      {/* VIP Auth Modal (Sign In / Register) */}
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onAuthSuccess={handleAuthSuccess}
+        showToast={showToast}
+      />
+
+      {/* VIP Profile Modal */}
+      <ProfileModal
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+        user={currentUser}
+        onLogout={handleLogout}
         showToast={showToast}
       />
 
@@ -250,7 +370,7 @@ export default function App() {
         <Hero onShopNow={() => scrollToSection('new-arrivals')} />
         <Categories
           items={categories}
-          onSelectCategory={() => scrollToSection('best-sellers')}
+          onSelectCategory={handleCategorySelect}
         />
         <NewArrivals
           items={newArrivals}
@@ -278,9 +398,15 @@ export default function App() {
         onSelectTab={(tab) => {
           setActiveTab(tab);
           if (tab === 'collections') scrollToSection('categories');
-          if (tab === 'wishlist') showToast(`You have ${wishlist.length} items saved.`);
+          if (tab === 'wishlist') showToast(`You have ${wishlist.length} item${wishlist.length === 1 ? '' : 's'} saved to your Wishlist.`);
           if (tab === 'atelier') scrollToSection('collection');
-          if (tab === 'profile') setIsMenuOpen(true);
+          if (tab === 'profile') {
+            if (currentUser) {
+              setIsProfileOpen(true);
+            } else {
+              setIsAuthOpen(true);
+            }
+          }
         }}
         wishlistCount={wishlist.length}
       />
